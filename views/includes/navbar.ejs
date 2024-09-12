@@ -1,0 +1,106 @@
+
+    <nav>
+
+       
+
+      <a href="/homepage"><img src="Logos/logo.png" alt="Logo" /></a>
+      <div class="nav-links" id="navLinks">
+     
+        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"   ></i>
+        <i class="fa-solid fa-podcast" onclick="hideMenu()"></i>
+     
+        
+        <div class="menu-container">
+           
+          <div class="menu-item"><ul><li><a href="/notice">NOTICES</a></li></ul></div>
+          <div class="menu-item"><ul><li><a href="/contact">CONTACT US</a></li></ul></div>
+          <div class="menu-item"><ul><li><a href="/admission">ADMISSIONS</a></li></ul></div>
+          <div class="menu-item"><ul><li><a href="/news">NEWS & EVENTS</a></li></ul></div>
+        
+        </div>
+      </div>
+
+      <div class="nav-icons">
+        <%if(user){%>
+        <div class="profile-dropdown">
+           
+          <div class="profile-btn"><img src="<%=user.avatar%>" alt="User" class="profile-user"/></div>
+          <div class="dropdown-content">
+
+            <a href="/profile/<%=user._id%>">
+          <div>Profile</div> 
+        </a>
+      
+        <a href="/user/update/<%=user.id%>">
+         <div> Update Info</div>
+        </a>
+        <% if(user.isAdmin){%>
+
+          <a href="/event/post">
+         <div> Add Event</div>  
+        </a>
+    
+        <a href="/text/<%=user._id%>">
+       <div>
+        Add Notice
+     </div>  
+    </a>
+
+    <a href="/contacts/<%=user._id%>">
+     <div>
+
+      Check Question
+
+   </div> 
+  </a>
+   <%}%>
+         <div>
+            <form method="post"  action="/logout">
+                <button>  Logout</button>
+            </form>
+         </div>
+
+
+  
+
+          </div>
+        </div>
+        <%}%>
+
+        <%if(!user){%>  
+
+          <a href="/login"><div class="DIV" >LOGIN </div></a>
+           <div class="slash"> /</div> 
+           <a href="/signup"> <div class="DIV"> SIGNUP</div></a>
+         
+            <%}%>
+            <div class="showmenu">   <i class="fa-solid fa-bars" onclick="showMenu()"></i></div>
+            <div class="showmenu"> <i class="fa-solid fa-podcast" onclick="showMenu()"></i></div>
+     
+     
+
+      </div>
+    </nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const userpp = document.querySelector(".profile-user");
+  const useropt = document.querySelector(".dropdown-content");
+  
+useropt.style.display="none";
+
+  userpp.addEventListener("click", () => {
+
+   if(useropt.style.display==="block") {
+    useropt.style.display="none"
+    }
+else{
+
+    useropt.style.display="block";
+}
+   
+
+  });
+});
+</script>
+ 
